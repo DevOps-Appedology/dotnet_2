@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                // Your build steps go here
+                // Your build steps go here//
                 
                 // Print a message during the build step
                 echo 'Building the project...'
