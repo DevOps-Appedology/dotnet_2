@@ -1,45 +1,41 @@
 pipeline {
     agent any
-
-    environment {
-        GIT_REPO_URL = 'https://github.com/DevOps-Appedology/dotnet_2.git'
-        WINDOWS_FOLDER = 'C:\\automatic\\Stag'
-    }
-
+    
     stages {
-        stage('Checkout') {
+        stage('Build') {
             steps {
-                script {
-                    checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], userRemoteConfigs: [[url: env.GIT_REPO_URL]]])
-                }
+                // Your build steps go here
+                
+                // Print a message during the build step
+                echo 'Building the project...'
             }
         }
-
-# Azhar Anas Sardar
-//
-        stage('Copy to Windows') {
+        stage('Test') {
             steps {
-                script {
-                    // Copy built files to the Windows folder
-                    def copyCmd = "xcopy /E /Y \"${env.WORKSPACE}\\*\" \"${env.WINDOWS_FOLDER}\""
-                    bat script: copyCmd, returnStatus: true
-                    def exitCode = powershell(returnStatus: true, script: 'exit $LASTEXITCODE')
-                    if (exitCode == 0) {
-                        echo "Copy to Windows folder succeeded"
-                    } else {
-                        error "Copy to Windows folder failed"
-                    }
-                }
+                // Your test steps go here
+                
+                // Print a message during the test step
+                echo 'Running tests...'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                // Your deployment steps go here
+                
+                // Print a message during the deployment step
+                echo 'Deploying the application...'
             }
         }
     }
-
+    
     post {
         success {
-            echo "Build and copy to Windows folder succeeded"
+            // Actions to perform on successful build
+            echo 'Pipeline succeeded!'
         }
         failure {
-            echo "Build or copy to Windows folder failed"
+            // Actions to perform on build failure
+            echo 'Pipeline failed!'
         }
     }
 }
