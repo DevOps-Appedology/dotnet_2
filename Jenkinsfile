@@ -9,7 +9,7 @@ pipeline {
                 // Print a message during the build step
                 echo 'Building the project...'
             }
-        }//
+        }////
         stage('Test') {
             steps {
                 // Your test steps go here
