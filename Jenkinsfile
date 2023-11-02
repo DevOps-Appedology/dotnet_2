@@ -5,7 +5,7 @@ pipeline {
         GIT_REPO_URL = 'https://github.com/DevOps-Appedology/dotnet_2.git'
         WINDOWS_FOLDER = 'C:\\automatic\\Stag'
     }
-//
+////
     stages {
         stage('Checkout') {
             steps {
